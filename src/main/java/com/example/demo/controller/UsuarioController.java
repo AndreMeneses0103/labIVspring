@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Usuario;
+import com.example.demo.entity.View;
 import com.example.demo.service.UsuarioService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 @RequestMapping(value = "/usuario")
@@ -25,6 +27,7 @@ public class UsuarioController {
     }
 
     @GetMapping
+    @JsonView(View.ViewUsuario.class)
     public List<Usuario> todosUsuarios(){
         return service.todosUsuarios();
     }
@@ -35,6 +38,7 @@ public class UsuarioController {
     }
 
     @GetMapping(value = "/{id}")
+    @JsonView(View.ViewUsuario.class)
     public Usuario usuarioPorId(@PathVariable("id") Long id){
         return service.usuarioPorId(id);
     }
